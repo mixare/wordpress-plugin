@@ -1,0 +1,71 @@
+.page-form table tr td{
+	padding:5px 20px 5px 0px;
+	vertical-align:top;
+}
+.mixare-maps{
+	padding:20px;
+	position:relative;
+	text-align:left;
+}
+.mixare-maps table tr td h4{	
+	margin:0px;
+	display:inline-block;
+}
+.mixare-maps table tr td{
+	padding-right:15px;
+}
+.mixare-second{
+	background:#dfdfdf;
+}
+.mixare-maps table tr td span{
+	position:absolute;
+	right:20px;
+}
+.mixare-textfield{
+	border:1px solid black;
+	width:600px;
+}
+.mixare-td-left{
+	width:100px;
+}
+.mixare-control{
+	padding:10px;
+	border-bottom:1px solid black;
+	border-left:1px solid black;
+	border-right:1px solid black;
+}
+.mixare-control label{
+	cursor:pointer;
+}
+.mixare-control span{
+	display:inline-block;
+	margin-right:75px;
+	vertical-align:top;
+}
+.mixare-control h5{
+	padding-bottom:0px;
+}
+#mixare-poi-map{
+	border-top:1px solid black;
+	border-left:1px solid black;
+	border-right:1px solid black;
+}
+.search-top{
+	text-align:center;
+	font-size:12px;
+	margin-bottom:40px;
+}
+.search-top h6{
+	display:inline;
+}
+.search-top span{
+	display:block;
+	text-align:left;
+	margin-left:60px;
+}
+#search-text{
+	width:300px;
+}
+.search-frame{
+	text-align:center;
+}
