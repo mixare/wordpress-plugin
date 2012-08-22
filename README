@@ -2,10 +2,11 @@
 |	Mixare POI
 |	Licensed: GPLv3
 |	
-|	Documentation for Version 1.0
+|	Documentation for Version pre alpha 0.1
 |
 ---------------------------------------------
 
+WARNING! The plugin is in a very early pre-alpha state. Please don’t use it in a production environment!
 
 This documentation assumes, that you already know, how to write Wordpress Plugins.
 You can learn it here:
