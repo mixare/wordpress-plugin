@@ -1,29 +1,33 @@
 <?php
-/**
- * @package Mixare POI
- * @version 
- */
 /*
 Plugin Name: Mixare POI
 Plugin URI:  http://www.mixare.org/wordpress-plugin/
 Description: Wordpress plugin to easily create mixare data sources. Mixare is an open source augmented reality browser for android and iOs. Both the plugin and mixare are licensed under the GPLv3.
 Author: Patrick Gruber - Mixare Team
-Version: alpha 0.1
+Version: 0.0.1-snapshot
 Author URI: http://www.mixare.org/
 */
 
-//adding the HOOKS for the functions
-register_activation_hook(__FILE__, 'mixarePOIInstall');
+//add definition of constant
+define('MIXAREPOI_VERSION', '0.0.1-SNAPSHOT');
+define('MIXAREPOI_DIR', plugin_dir_path(__FILE__));
+define('MIXAREPOI_URL', plugin_dir_url(__FILE__));
+define('MIXAREPOI__FILE__', ABSPATH . PLUGINDIR . '/mixare-poi/mixare-poi.php');
+
+//installing the necessary options -> install/installer.php
+require_once(MIXAREPOI_DIR.'/install/installer.php');
+
+
 add_action('admin_menu', 'mixareManagementMenu');
 add_action('admin_head', 'printManagementCSS');
 add_action('wp_head', 'printPageCSS');
 add_action('widgets_init', create_function('', 'return register_widget("MixarePOI");'));
-add_filter('the_content', 'checkPageSpacehold');
 add_action('get_header', 'checkPageTitle');
+
+add_filter('the_content', 'checkPageSpacehold');
+
 LoadMapScripts::init();
 
-//installing the necessary options -> install/installer.php
-include_once('install/installer.php');
 
 //register the Management Menu for the Management Menu 
 function mixareManagementMenu() {
