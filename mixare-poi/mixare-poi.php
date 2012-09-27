@@ -18,15 +18,22 @@ define('MIXAREPOI__FILE__', ABSPATH . PLUGINDIR . '/mixare-poi/mixare-poi.php');
 require_once(MIXAREPOI_DIR.'/install/installer.php');
 
 
+
+//add Actions
 add_action('admin_menu', 'mixareManagementMenu');
 add_action('admin_head', 'printManagementCSS');
 add_action('wp_head', 'printPageCSS');
 add_action('widgets_init', create_function('', 'return register_widget("MixarePOI");'));
 add_action('get_header', 'checkPageTitle');
 
+// add filter
 add_filter('the_content', 'checkPageSpacehold');
 
-LoadMapScripts::init();
+
+//loading scripts maps
+require_once(MIXAREPOI_DIR.'/calss-load-map-scripts.php');
+Load_Map_Scripts::init();
+
 
 
 //register the Management Menu for the Management Menu 
@@ -64,46 +71,4 @@ include_once('filter/page_filter.php');
 //checking page for title hook -> filter/title_filter.php
 include_once('filter/title_filter.php');
 
-//loading scripts -> maps/load-map-scripts.php
-class LoadMapScripts {
-	static $add_script = false;
- 
-	function init() {
-		if(isset($_GET['map']) && !empty($_GET['map'])){
-			//if(is_user_logged_in()){
-				add_action('init', array(__CLASS__, 'registerScript'));
-				add_action('wp_footer', array(__CLASS__, 'printScript'));
-			//}
-		}
-		add_filter('the_content', array(__CLASS__, 'checkPageContent'));
-	}
-	function registerScript() {
-		wp_register_script('js', 'http://maps.google.com/maps/api/js?sensor=true', '1.0', true);
-		wp_register_script('map_poi', plugins_url('maps/scripts/map_poi.js', __FILE__), array('jquery'), '1.0', true);
-
-		self::$add_script = true;
-	}
-	function printScript() {
-		if ( ! self::$add_script )
-			return;
-
-		wp_print_scripts('js');
-		include_once('maps/inc/data.php');
-		wp_print_scripts('map_poi');
-	}
-	function checkPageContent($content){
-		$t = "";
-		if(isset($_SERVER['REDIRECT_URL']))
-			$t = $_SERVER['REDIRECT_URL'];
-
-		if(get_Option('mixare-poi-path') == "http://" . $_SERVER['HTTP_HOST'] . $t){
-			if(is_user_logged_in()){
-				//do something other	
-			}
-		}
-		else{
-			return $content;
-		}
-	}
-}
 ?>
